@@ -1,0 +1,25 @@
+<div class="page-container">
+  <div class="container">
+    <mat-toolbar class="app-header">
+      <span>Farming simulator 2024 🚜</span>
+    </mat-toolbar>
+
+    <main class="app-content">
+      <h2>Animals</h2>
+      <div class="add-animal-wrapper" *ngIf="!loading; else loadingPlaceholder">
+        <create-animal></create-animal>
+
+        <h3>All animals:</h3>
+        <animal-list [animals]="animals"></animal-list>
+      </div>
+
+      <ng-template #loadingPlaceholder>
+        <mat-spinner diameter="30"></mat-spinner>
+      </ng-template>
+    </main>
+  </div>
+
+  <mat-toolbar class="app-footer">
+    <p>Developed by: Ilya Livshits (jarto666&#64;gmail.com)</p>
+  </mat-toolbar>
+</div>

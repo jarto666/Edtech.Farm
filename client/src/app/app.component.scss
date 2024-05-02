@@ -1,0 +1,89 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+
+  span {
+    margin: 0;
+    overflow-x: hidden;
+  }
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  // min-height: calc(100vh - 10rem);
+  overflow-y: auto;
+  height: 100%;
+}
+
+.title {
+  margin: 10px 0px;
+}
+
+.app-footer {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+    overflow-x: hidden;
+  }
+}
+
+.add-animal-wrapper {
+  width: 100%;
+
+  .add-animal {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 30px;
+    max-width: 500px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      max-width: none;
+    }
+
+    .add-animal-input-wrapper {
+      width: 100%;
+    }
+
+    .add-animal-btn {
+      margin-top: 5px;
+
+      .add-animal-btn-icon {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.animals-list {
+  list-style-type: none;
+  padding: 0; /* Remove default padding if needed */
+  margin: 0;
+
+  .animals-list-item {
+    margin: 10px 0px;
+  }
+}

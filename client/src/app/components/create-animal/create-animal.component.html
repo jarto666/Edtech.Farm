@@ -1,0 +1,35 @@
+<h4 class="title">Add new animal:</h4>
+<form [formGroup]="animalForm">
+  <div class="add-animal">
+    <mat-form-field class="add-animal-input-wrapper" appearance="fill">
+      <mat-label>Animal Name</mat-label>
+      <input
+        matInput
+        formControlName="animalName"
+        (focus)="resetErrorMessage()"
+      />
+      <mat-error *ngIf="animalForm.get('animalName')?.hasError('required')">
+        Animal name is required.
+      </mat-error>
+      <mat-error *ngIf="animalForm.get('animalName')?.hasError('maxlength')">
+        Animal name must be less than 100 characters.
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-fab
+      extended
+      color="primary"
+      class="add-animal-btn"
+      [disabled]="animalForm.invalid"
+      (click)="addAnimal()"
+    >
+      <mat-icon class="add-animal-btn-icon">add</mat-icon>
+      CREATE
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <mat-icon class="error-icon">error</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+</form>

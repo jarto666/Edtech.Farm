@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  farmweb:
+    image: farm-api:latest
+    build:
+      context: ./api/Farm/Farm.Api  # Path to your ASP.NET Core Web API project
+    ports:
+      - "4015:80"  # Expose the Web API on port 8080
+
+  # angular:
+  #   build:
+  #     context: ./client  # Path to your Angular project
+  #   ports:
+  #     - "4014:80"  # Expose the Angular app on port 4014

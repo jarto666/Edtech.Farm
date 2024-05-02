@@ -1,0 +1,14 @@
+.animals-list {
+  list-style-type: none;
+  padding: 0; /* Remove default padding if needed */
+  margin: 0;
+  width: 500px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  .animals-list-item {
+    margin: 10px 0px;
+  }
+}

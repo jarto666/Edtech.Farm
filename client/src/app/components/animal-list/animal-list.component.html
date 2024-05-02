@@ -1,0 +1,11 @@
+<ul class="animals-list">
+  <div *ngIf="!animals || animals.length == 0; else animalsList">
+    No animals on your farm
+  </div>
+
+  <ng-template #animalsList>
+    <li class="animals-list-item" *ngFor="let animal of animals">
+      <animal-card [animal]="animal"></animal-card>
+    </li>
+  </ng-template>
+</ul>

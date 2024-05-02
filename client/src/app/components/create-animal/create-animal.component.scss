@@ -1,0 +1,37 @@
+.add-animal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  max-width: 500px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: none;
+  }
+
+  .add-animal-input-wrapper {
+    width: 100%;
+  }
+
+  .add-animal-btn {
+    margin-top: 5px;
+
+    .add-animal-btn-icon {
+      margin-right: 4px;
+    }
+  }
+}
+
+form {
+  margin-bottom: 30px;
+
+  .error-message {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #af0000;
+  }
+}
