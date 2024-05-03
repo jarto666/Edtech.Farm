@@ -10,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddCors(o => o.AddDefaultPolicy(b => b
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
 
 builder.Services.AddDbContext<AnimalsContext>(opt =>
     opt.UseInMemoryDatabase("AnimalsDb"));
@@ -30,5 +34,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+app.UseCors();
 
 app.Run();

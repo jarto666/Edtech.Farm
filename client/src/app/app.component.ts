@@ -38,6 +38,7 @@ import { CreateAnimalComponent } from './components/create-animal/create-animal.
 export class AppComponent implements OnInit {
   animals: Animal[] = [];
   loading: boolean = true;
+  error?: string;
 
   constructor(
     private animalService: AnimalService,
@@ -45,16 +46,22 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventService.listener().subscribe((eventType) => {
+    this.eventService.listener().subscribe(() => {
       this.retrieveAnimals();
     });
   }
 
   retrieveAnimals() {
     this.loading = true;
-    this.animalService.getAnimals().subscribe((animals) => {
-      this.animals = animals;
-      this.loading = false;
+    this.animalService.getAnimals().subscribe({
+      next: (animals) => {
+        this.animals = animals;
+        this.loading = false;
+      },
+      error: (error: string) => {
+        this.error = error;
+        this.loading = false;
+      },
     });
   }
 }

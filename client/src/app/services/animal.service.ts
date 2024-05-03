@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Animal } from '../models/animal.model';
 import { Observable, catchError, delay, of, throwError } from 'rxjs';
 import { LoggingService } from './logging.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -13,7 +13,15 @@ export class AnimalService {
 
   getAnimals(): Observable<Animal[]> {
     this.logger.debug('HTTP GET /animals');
-    return this.http.get<Animal[]>(`${environment.hostApiUrl}animals`);
+    return this.http.get<Animal[]>(`${environment.hostApiUrl}animals`).pipe(
+      catchError((err: HttpErrorResponse) => {
+        this.logger.error(JSON.stringify(err));
+        if (err.status === 0) {
+          return throwError(() => 'Unrecognized error, please refresh.');
+        }
+        return throwError(() => err.message);
+      })
+    );
   }
 
   addAnimal(name: string): Observable<Animal> {
@@ -26,6 +34,8 @@ export class AnimalService {
         catchError((error) => {
           if (error.status === 409) {
             return throwError(() => error.error || 'Conflict adding animal');
+          } else if (error.status === 0) {
+            return throwError(() => 'Unrecognized error, please refresh.');
           } else {
             return throwError(() => error);
           }

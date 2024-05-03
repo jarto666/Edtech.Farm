@@ -12,6 +12,7 @@ namespace Farm.Api.Controllers;
 public class AnimalsController(IAnimalsService animalsService, IValidator<CreateAnimalRequest> createRequestValidator) : ControllerBase
 {
     [HttpGet]
+    [ProducesResponseType(typeof(AnimalDto[]), StatusCodes.Status200OK)]
     [Route("")]
     public async Task<IActionResult> GetAll()
     {
@@ -20,6 +21,9 @@ public class AnimalsController(IAnimalsService animalsService, IValidator<Create
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+    [ProducesResponseType(typeof(AnimalDto), StatusCodes.Status200OK)]
     [Route("")]
     public async Task<IActionResult> Create(CreateAnimalRequest request)
     {
@@ -34,6 +38,9 @@ public class AnimalsController(IAnimalsService animalsService, IValidator<Create
     }
 
     [HttpDelete]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(AnimalDto), StatusCodes.Status200OK)]
     [Route("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id)
     {
@@ -52,7 +59,7 @@ public class AnimalsController(IAnimalsService animalsService, IValidator<Create
         {
             ErrorCode.NotFound => NotFound(result.Error.Message),
             ErrorCode.Conflict => Conflict(result.Error.Message),
-            _ => StatusCode(500, $"An unexpected error occurred. Details: {result.Error.Message}")
+            _ => StatusCode(StatusCodes.Status500InternalServerError, $"An unexpected error occurred. Details: {result.Error.Message}")
         };
     }
 }

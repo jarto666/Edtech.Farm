@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AnimalEventService } from '../../services/animal-events.service';
 import { AnimalEventType } from '../../enums/animal-event-type.enum copy';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'animal-card',

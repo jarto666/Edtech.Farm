@@ -5,16 +5,25 @@
     </mat-toolbar>
 
     <main class="app-content">
-      <h2>Animals</h2>
-      <div class="add-animal-wrapper" *ngIf="!loading; else loadingPlaceholder">
-        <create-animal></create-animal>
+      <ng-container *ngIf="!error; else errorPlaceholder">
+        <h2>Animals</h2>
+        <div
+          class="add-animal-wrapper"
+          *ngIf="!loading; else loadingPlaceholder"
+        >
+          <create-animal></create-animal>
 
-        <h3>All animals:</h3>
-        <animal-list [animals]="animals"></animal-list>
-      </div>
+          <h3>All animals:</h3>
+          <animal-list [animals]="animals"></animal-list>
+        </div>
 
-      <ng-template #loadingPlaceholder>
-        <mat-spinner diameter="30"></mat-spinner>
+        <ng-template #loadingPlaceholder>
+          <mat-spinner diameter="30"></mat-spinner>
+        </ng-template>
+      </ng-container>
+
+      <ng-template #errorPlaceholder>
+        <span class="error">Error: {{ error }}</span>
       </ng-template>
     </main>
   </div>

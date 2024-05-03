@@ -48,34 +48,6 @@
 
 .add-animal-wrapper {
   width: 100%;
-
-  .add-animal {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 30px;
-    max-width: 500px;
-
-    @media (max-width: 600px) {
-      flex-direction: column;
-      gap: 0;
-      width: 100%;
-      max-width: none;
-    }
-
-    .add-animal-input-wrapper {
-      width: 100%;
-    }
-
-    .add-animal-btn {
-      margin-top: 5px;
-
-      .add-animal-btn-icon {
-        margin-right: 4px;
-      }
-    }
-  }
 }
 
 .animals-list {
@@ -86,4 +58,8 @@
   .animals-list-item {
     margin: 10px 0px;
   }
+}
+
+.error {
+  color: #af0000;
 }
